@@ -8,10 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ResourceTag } from '../resource_tag/resource_tags.entity';
-import {
-  RemoveTag as FilterTag,
-  TagRelation,
-} from '../resource_tag/resource_tag.decorator';
+import { FilterTag, TagRelation } from '../resource_tag/resource_tag.decorator';
 @Entity('mock_tags')
 export class Mock {
   @PrimaryGeneratedColumn()

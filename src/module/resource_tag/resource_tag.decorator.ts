@@ -15,11 +15,10 @@ export const TagRelation = (target: any): PropertyDecorator => {
   );
 };
 
-export const RemoveTag = (resource: string): MethodDecorator => {
+export const FilterTag = (resource: string): MethodDecorator => {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     AfterLoad()(target, propertyKey);
     descriptor.value = function () {
-      console.log(target);
       this.tags = this.tags.filter((tag) => tag.resource === resource);
     };
   };
