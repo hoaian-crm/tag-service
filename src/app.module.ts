@@ -21,10 +21,10 @@ import { MockModule } from './module/mock/mock.module';
       logging: process.env.NODE_ENV === 'development',
     }),
 
+    MockModule,
     LoggerModule,
     TagModule,
     ResourceTagModule,
-    MockModule,
   ],
 })
 export class AppModule {}

@@ -1,8 +1,22 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module, applyDecorators } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ResourceTags } from './resource_tags.entity';
+import { ResourceTag, resourceTagCreator } from './resource_tags.entity';
 
-@Module({
-  imports: [TypeOrmModule.forFeature([ResourceTags])],
-})
-export class ResourceTagModule {}
+@Module({})
+export class ResourceTagModule {
+  static register(target: any): DynamicModule {
+    const entity = resourceTagCreator(target);
+    const entityForFeature = TypeOrmModule.forFeature([entity, target]);
+    const entityProvider = {
+      provide: 'TAG_INJECT',
+      useValue: entity,
+    };
+    applyDecorators();
+    return {
+      module: ResourceTagModule,
+      imports: [entityForFeature],
+      exports: [entityProvider, entityForFeature],
+      providers: [entityProvider],
+    };
+  }
+}
