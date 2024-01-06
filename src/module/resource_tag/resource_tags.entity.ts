@@ -1,5 +1,6 @@
 import {
   AfterLoad,
+  Check,
   Column,
   Entity,
   JoinColumn,
@@ -8,7 +9,9 @@ import {
 } from 'typeorm';
 import { Tag } from '../tag/tag.entity';
 import { Mock } from '../mock/mock.entity';
-import { Injectable } from '@nestjs/common';
+import { Injectable, applyDecorators } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 
 export abstract class ResourceTag {
   id: number;
@@ -32,7 +35,7 @@ export function resourceTagCreator(target: any) {
     @Column()
     value: string;
 
-    @Column()
+    @Column({})
     resource: string;
 
     @Column()
@@ -53,17 +56,4 @@ export function resourceTagCreator(target: any) {
   }
 
   return Mapper;
-}
-
-export class ResourceTagSingleton {
-  static tagEntities: {
-    [targetName: string]: ResourceTag & any;
-  } = {};
-
-  static upsert(target: any) {
-    if (!this.tagEntities[target.name]) {
-      this.tagEntities[target.name] = resourceTagCreator(target);
-    }
-    return this.tagEntities[target.name];
-  }
 }

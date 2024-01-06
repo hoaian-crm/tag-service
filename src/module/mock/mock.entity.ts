@@ -6,10 +6,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {
-  ResourceTag,
-  ResourceTagSingleton,
-} from '../resource_tag/resource_tags.entity';
+import { ResourceTag } from '../resource_tag/resource_tags.entity';
+import { TagRelation } from '../resource_tag/resource_tag.decorator';
+import { ResourceTagModule } from '../resource_tag/resource_tag.module';
 @Entity('mock_tags')
 export class Mock {
   @PrimaryGeneratedColumn()
@@ -18,12 +17,6 @@ export class Mock {
   @Column()
   description: string;
 
-  @OneToMany(
-    () => ResourceTagSingleton.upsert(Mock),
-    (r_tag: any) => r_tag.data,
-    {
-      eager: true,
-    },
-  )
+  @TagRelation(Mock)
   tags: ResourceTag[];
 }
