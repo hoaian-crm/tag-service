@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Tag } from './tag.entity';
 import { Repository } from 'typeorm';
 import { CreateTagDto } from './dto/create.dto';
+import { AttachTagDto } from './dto/attach.dto';
 
 @Injectable()
 export class TagService {
@@ -12,7 +13,20 @@ export class TagService {
     return this.tagRepository.findAndCount();
   }
 
-  async create(@Body() data: CreateTagDto) {
+  async create(data: CreateTagDto) {
     return this.tagRepository.save(this.tagRepository.create(data));
+  }
+
+  async attach(data: AttachTagDto) {
+    return (
+      await this.tagRepository.query(
+        `
+      insert into resource_tags (id, key, value, resource, resource_id)
+      values (default, $1, $2, $3, $4)
+      returning resource_tags.*
+    `,
+        [data.key, data.value, data.resource, data.resource_id],
+      )
+    )[0];
   }
 }
