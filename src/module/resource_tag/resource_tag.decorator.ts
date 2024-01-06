@@ -1,8 +1,9 @@
 import { applyDecorators } from '@nestjs/common';
-import { OneToMany } from 'typeorm';
+import { AfterLoad, OneToMany } from 'typeorm';
 import { ResourceTagModule } from './resource_tag.module';
 
 export const TagRelation = (target: any): PropertyDecorator => {
+  AfterLoad()(target, 'removeTag');
   return applyDecorators(
     OneToMany(
       () => ResourceTagModule.upsert(target),
@@ -12,4 +13,14 @@ export const TagRelation = (target: any): PropertyDecorator => {
       },
     ),
   );
+};
+
+export const RemoveTag = (resource: string): MethodDecorator => {
+  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    AfterLoad()(target, propertyKey);
+    descriptor.value = function () {
+      console.log(target);
+      this.tags = this.tags.filter((tag) => tag.resource === resource);
+    };
+  };
 };

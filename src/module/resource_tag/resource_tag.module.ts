@@ -1,6 +1,7 @@
 import { DynamicModule, Module, applyDecorators } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResourceTag, resourceTagCreator } from './resource_tags.entity';
+import { Tag } from '../tag/tag.entity';
 
 @Module({})
 export class ResourceTagModule {
@@ -17,7 +18,7 @@ export class ResourceTagModule {
 
   static register(target: any): DynamicModule {
     const entity = this.upsert(target);
-    const entityForFeature = TypeOrmModule.forFeature([entity]);
+    const entityForFeature = TypeOrmModule.forFeature([entity, Tag]);
     return {
       module: ResourceTagModule,
       imports: [entityForFeature],

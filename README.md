@@ -39,6 +39,10 @@ export class Mock {
   // + Add this
   @TagRelation(Mock)
   tags: ResourceTag[];
+
+  // + Add this
+  @FilterTag('mock_tags')
+  async filterTag() {}
 }
 ```
 

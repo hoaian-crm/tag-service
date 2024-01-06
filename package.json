@@ -1,9 +1,10 @@
 {
-  "name": "crm-tags",
-  "version": "1.0.1",
+  "name": "crm-resource-tag",
+  "version": "1.0.8",
   "description": "",
   "author": "",
-  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
