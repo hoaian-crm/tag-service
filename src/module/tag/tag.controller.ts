@@ -40,6 +40,11 @@ export class TagController {
     }
   }
 
+  @ApiMetaData({
+    name: 'Attach tag',
+    description: 'Allow attach tag to resource',
+    policy: 'tag:attach',
+  })
   @Post('/attach')
   async attach(@Body() data: AttachTagDto) {
     const result = await this.tagService.attach(data);
