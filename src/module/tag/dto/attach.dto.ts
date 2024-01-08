@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer'
 
 export class AttachTagDto {
   @IsString()
@@ -15,5 +16,6 @@ export class AttachTagDto {
 
   @IsString()
   @IsNotEmpty()
+  @Type(() => String)
   value: string;
 }
