@@ -8,7 +8,7 @@ import { AttachTagDto } from './dto/attach.dto';
 import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
 import { DeleteTagParam } from './dto/delete.dto';
 
-@ControllerMetaData('tags')
+@ControllerMetaData('tags', 'Tag')
 @Controller('tags')
 export class TagController {
   constructor(
