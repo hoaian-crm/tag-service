@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiMetaData, ControllerMetaData } from 'crm-permission';
 import { TagService } from './tag.service';
 import { Response } from 'crm-prototypes';
 import { CreateTagDto } from './dto/create.dto';
 import { LoggerService } from 'crm-logger';
 import { AttachTagDto } from './dto/attach.dto';
+import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
+import { DeleteTagParam } from './dto/delete.dto';
 
 @ControllerMetaData('tags')
 @Controller('tags')
@@ -50,4 +52,27 @@ export class TagController {
     const result = await this.tagService.attach(data);
     return Response.createSuccess(result);
   }
+
+  @ApiMetaData({
+    name: "Update tag",
+    description: "Allow update tag",
+    policy: 'tag:update'
+  })
+  @Put('/:key')
+  async update(@Body() data: UpdateTagBody, @Param() param: UpdateTagParam) {
+    const result = await this.tagService.update(data, param);
+    return Response.updateSuccess(result);
+  }
+
+  @ApiMetaData({
+    name: "Delete tag",
+    description: "Allow delete tag",
+    policy: 'tag:delete'
+  })
+  @Delete('/:key')
+  async delete(@Param() param: DeleteTagParam) {
+    const result = await this.tagService.delete(param);
+    return Response.deleteSuccess(result);
+  }
+
 }

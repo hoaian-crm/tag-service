@@ -1,4 +1,5 @@
 import {
+  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -10,13 +11,14 @@ import {
 
 @Entity('tags')
 export class Tag {
-  @PrimaryColumn()
+
+  @PrimaryColumn({ type: String })
   key: string;
 
-  @PrimaryColumn()
+  @Column()
   color: string;
 
-  @PrimaryColumn()
+  @Column()
   description: string;
 
   @CreateDateColumn()

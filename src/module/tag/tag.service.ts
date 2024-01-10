@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import { CreateTagDto } from './dto/create.dto';
 import { AttachTagDto } from './dto/attach.dto';
 import { ResourceTagService } from '../resource_tag/resource_tag.service';
+import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
+import { DeleteTagParam } from './dto/delete.dto';
 
 @Injectable()
 export class TagService {
@@ -19,18 +21,13 @@ export class TagService {
   }
 
   async attach(data: AttachTagDto) {
-
     return this.resourceTagService.attach(data)
+  }
 
-    // return (
-    //   await this.tagRepository.query(
-    //     `
-    //   insert into resource_tags (id, key, value, resource, resource_id)
-    //   values (default, $1, $2, $3, $4)
-    //   returning resource_tags.*
-    // `,
-    //     [data.key, data.value, data.resource, data.resource_id],
-    //   )
-    // )[0];
+  async update(data: UpdateTagBody, param: UpdateTagParam) {
+    return this.tagRepository.update({ key: param.key }, data);
+  }
+  async delete(param: DeleteTagParam) {
+    return this.tagRepository.delete(param)
   }
 }
