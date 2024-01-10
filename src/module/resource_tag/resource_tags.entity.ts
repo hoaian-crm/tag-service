@@ -13,14 +13,22 @@ import { Injectable, applyDecorators } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 
-export abstract class ResourceTag {
+@Entity('resource_tags')
+export class ResourceTag {
+  @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
   key: string;
+
+  @Column()
   value: string;
+
+  @Column()
   resource: string;
+
+  @Column()
   resource_id: number;
-  tag: Tag;
-  data: any;
 }
 
 export function resourceTagCreator(target: any) {

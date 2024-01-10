@@ -2,12 +2,9 @@ import { DynamicModule, Module, applyDecorators } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResourceTag, resourceTagCreator } from './resource_tags.entity';
 import { Tag } from '../tag/tag.entity';
-import { ResourceTagService } from './resource_tag.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ResourceTag])],
-  providers: [ResourceTagService],
-  exports: [ResourceTagService]
+  imports: [ResourceTagModule.register({})]
 })
 export class ResourceTagModule {
   static tagEntities: {

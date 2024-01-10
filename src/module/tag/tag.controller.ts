@@ -12,7 +12,7 @@ export class TagController {
   constructor(
     private tagService: TagService,
     private loggerService: LoggerService,
-  ) {}
+  ) { }
 
   @ApiMetaData({
     name: 'Get tag',
