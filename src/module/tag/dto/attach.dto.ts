@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Type } from 'class-transformer'
 
 export class AttachTagDto {
@@ -14,7 +14,7 @@ export class AttachTagDto {
   key: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @Type(() => String)
   value: string;
 }

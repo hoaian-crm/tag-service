@@ -1,5 +1,5 @@
+import { configLogger } from '@hoaian-crm/logger';
 import { NestFactory } from '@nestjs/core';
-import { configLogger } from 'crm-logger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {

@@ -8,13 +8,13 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { LoggerService } from 'crm-logger';
 import { Response } from 'crm-prototypes';
 import { AttachTagDto } from './dto/attach.dto';
 import { CreateTagDto } from './dto/create.dto';
 import { DeleteTagParam } from './dto/delete.dto';
 import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
 import { TagService } from './tag.service';
+import { LoggerService } from '@hoaian-crm/logger';
 
 @ControllerMetaData('tags', 'Tag')
 @Controller('tags')
@@ -22,7 +22,7 @@ export class TagController {
   constructor(
     private tagService: TagService,
     private loggerService: LoggerService,
-  ) {}
+  ) { }
 
   @ApiMetaData({
     name: 'Get tag',

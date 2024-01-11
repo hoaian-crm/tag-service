@@ -1,10 +1,10 @@
+import { LoggerModule } from '@hoaian-crm/logger';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerModule } from 'crm-logger';
-import { TagModule } from './module/tag/tag.module';
-import { ResourceTagModule } from './module/resource_tag/resource_tag.module';
 import { MockModule } from './module/mock/mock.module';
+import { ResourceTagModule } from './module/resource_tag/resource_tag.module';
+import { TagModule } from './module/tag/tag.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,4 +27,4 @@ import { MockModule } from './module/mock/mock.module';
     ResourceTagModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

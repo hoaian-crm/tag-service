@@ -13,6 +13,7 @@
     "allowJs": false,
     "skipLibCheck": false,
     "rootDir": "src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "skipLibCheck": true
   }
 }
