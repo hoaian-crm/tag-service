@@ -1,12 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiMetaData, ControllerMetaData } from 'crm-permission';
-import { TagService } from './tag.service';
-import { Response } from 'crm-prototypes';
-import { CreateTagDto } from './dto/create.dto';
+import { ApiMetaData, ControllerMetaData } from '@hoaian-crm/permissions';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { LoggerService } from 'crm-logger';
+import { Response } from 'crm-prototypes';
 import { AttachTagDto } from './dto/attach.dto';
-import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
+import { CreateTagDto } from './dto/create.dto';
 import { DeleteTagParam } from './dto/delete.dto';
+import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
+import { TagService } from './tag.service';
 
 @ControllerMetaData('tags', 'Tag')
 @Controller('tags')
@@ -14,7 +22,7 @@ export class TagController {
   constructor(
     private tagService: TagService,
     private loggerService: LoggerService,
-  ) { }
+  ) {}
 
   @ApiMetaData({
     name: 'Get tag',
@@ -54,9 +62,9 @@ export class TagController {
   }
 
   @ApiMetaData({
-    name: "Update tag",
-    description: "Allow update tag",
-    policy: 'tag:update'
+    name: 'Update tag',
+    description: 'Allow update tag',
+    policy: 'tag:update',
   })
   @Put('/:key')
   async update(@Body() data: UpdateTagBody, @Param() param: UpdateTagParam) {
@@ -65,14 +73,13 @@ export class TagController {
   }
 
   @ApiMetaData({
-    name: "Delete tag",
-    description: "Allow delete tag",
-    policy: 'tag:delete'
+    name: 'Delete tag',
+    description: 'Allow delete tag',
+    policy: 'tag:delete',
   })
   @Delete('/:key')
   async delete(@Param() param: DeleteTagParam) {
     const result = await this.tagService.delete(param);
     return Response.deleteSuccess(result);
   }
-
 }
