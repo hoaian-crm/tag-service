@@ -1,10 +1,21 @@
 {
-  "name": "crm-resource-tag",
+  "name": "@hoaian-crm/tags",
   "version": "1.1.1",
-  "description": "",
   "main": "dist/index.js",
   "author": "",
   "types": "dist/index.d.ts",
+  "description": "Manage tag in system",
+  "author": {
+    "name": "Tran Hoai An",
+    "email": "hoaian412003@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoaian-crm/tag-service.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/hoaian-crm"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
