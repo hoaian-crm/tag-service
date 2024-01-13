@@ -1,4 +1,4 @@
-import { ApiMetaData, ControllerMetaData } from '@hoaian-crm/permissions';
+import { ApiMetaData, ControllerMetaData } from '@relationc/permissions';
 import {
   Body,
   Controller,
@@ -14,7 +14,7 @@ import { CreateTagDto } from './dto/create.dto';
 import { DeleteTagParam } from './dto/delete.dto';
 import { UpdateTagBody, UpdateTagParam } from './dto/update.dto';
 import { TagService } from './tag.service';
-import { LoggerService } from '@hoaian-crm/logger';
+import { LoggerService } from '@relationc/logger';
 
 @ControllerMetaData('tags', 'Tag')
 @Controller('tags')

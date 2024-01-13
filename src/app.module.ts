@@ -1,4 +1,4 @@
-import { LoggerModule } from '@hoaian-crm/logger';
+import { LoggerModule } from '@relationc/logger';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
